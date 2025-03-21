@@ -1,18 +1,19 @@
 class Mpd < Formula
   desc "Music Player Daemon"
   homepage "https://www.musicpd.org/"
+
   license "GPL-2.0-or-later"
-  revision 2
   head "https://github.com/MusicPlayerDaemon/MPD.git", branch: "master"
 
   stable do
-    url "https://github.com/MusicPlayerDaemon/MPD/archive/refs/tags/v0.23.17.tar.gz"
-    sha256 "6fcdc5db284297150734afd9b3d1a5697a29f6297eff1b56379018e31d023838"
+    url "https://github.com/MusicPlayerDaemon/MPD/archive/refs/tags/v0.24.1.tar.gz"
+    sha256 "d2663a24516a5550d61aa9d175987f1be708732d37e39df5c858c1e2d624f9e3"
 
-    # support libnfs 6.0.0, upstream commit ref, https://github.com/MusicPlayerDaemon/MPD/commit/31e583e9f8d14b9e67eab2581be8e21cd5712b47
+    # Fix "exception: too many arguments" on macOS (https://github.com/MusicPlayerDaemon/MPD/issues/2235)
+    # Patch merged upstream, remove on next release.
     patch do
-      url "https://raw.githubusercontent.com/Homebrew/formula-patches/557ad661621fa81b5e6ff92ab169ba40eba58786/mpd/0.23.16-libnfs-6.patch"
-      sha256 "e0f2e6783fbb92d9850d31f245044068dc0614721788d16ecfa8aacfc5c27ff3"
+      url "https://github.com/MusicPlayerDaemon/MPD/commit/afbe3e3ebda77a8f724716e8d1113a29011fb3e2.patch?full_index=1"
+      sha256 "5183bf31aeadbf36c6f970527638c1fc3302af9de9f0df8229e93e1274d6410b"
     end
   end
 
@@ -65,6 +66,11 @@ class Mpd < Formula
   uses_from_macos "curl"
   uses_from_macos "zlib"
 
+  on_macos do
+    # error: no member named 'make_unique_for_overwrite' in namespace 'std'
+    depends_on "llvm" => :build if DevelopmentTools.clang_build_version <= 1500
+  end
+
   on_linux do
     depends_on "systemd" => :build
     depends_on "alsa-lib"
@@ -75,13 +81,12 @@ class Mpd < Formula
   end
 
   def install
+    ENV.llvm_clang if OS.mac? && DevelopmentTools.clang_build_version <= 1500
+
     # mpd specifies -std=gnu++0x, but clang appears to try to build
     # that against libstdc++ anyway, which won't work.
     # The build is fine with G++.
     ENV.libcxx
-
-    # https://github.com/MusicPlayerDaemon/MPD/pull/2198
-    inreplace "src/lib/nfs/meson.build", "['>= 4', '< 6']", "['>= 4']"
 
     args = %W[
       -Dcpp_std=c++20
