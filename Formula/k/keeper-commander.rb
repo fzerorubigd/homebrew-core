@@ -3,8 +3,8 @@ class KeeperCommander < Formula
 
   desc "Command-line and SDK interface to Keeper Password Manager"
   homepage "https://docs.keeper.io/en/privileged-access-manager/commander-cli/overview"
-  url "https://files.pythonhosted.org/packages/f2/4e/18d6e6635f8bc007349e86cec30873fdbf0abe83a57ae3db0fdf603eaf99/keepercommander-17.0.10.tar.gz"
-  sha256 "0678434f4ca632a68b41a05f861a9f5f22ae13a715866e7395a924d8b7d99999"
+  url "https://files.pythonhosted.org/packages/77/0c/1d3fa7af27bbd1248046c6697abc44a315310ca0a4a50a42fb13dd40455d/keepercommander-17.0.11.tar.gz"
+  sha256 "45579c86fcd030d71099b106531f86c71f203075928d3b2770d401539b3254db"
   license "MIT"
   head "https://github.com/Keeper-Security/Commander.git", branch: "master"
 
@@ -26,6 +26,16 @@ class KeeperCommander < Formula
   depends_on "cryptography"
   depends_on "python@3.13"
 
+  resource "aioice" do
+    url "https://files.pythonhosted.org/packages/33/b6/e2b0e48ccb5b04fe29265e93f14a0915f416e359c897ae87d570566c430b/aioice-0.9.0.tar.gz"
+    sha256 "fc2401b1c4b6e19372eaaeaa28fd1bd9cbf6b0e412e48625297c53b495eebd1e"
+  end
+
+  resource "aiortc" do
+    url "https://files.pythonhosted.org/packages/8a/f8/408e092748521889c9d33dddcef920afd9891cf6db4615ba6b6bfe114ff8/aiortc-1.10.1.tar.gz"
+    sha256 "64926ad86bde20c1a4dacb7c3a164e57b522606b70febe261fada4acf79641b5"
+  end
+
   resource "annotated-types" do
     url "https://files.pythonhosted.org/packages/ee/67/531ea369ba64dcff5ec9c3402f9f51bf748cec26dde048a2f973a4eea7f5/annotated_types-0.7.0.tar.gz"
     sha256 "aff07c09a53a08bc8cfccb9c85b05f1aa9a2a6f23728d790723543408344ce89"
@@ -34,6 +44,11 @@ class KeeperCommander < Formula
   resource "asciitree" do
     url "https://files.pythonhosted.org/packages/2d/6a/885bc91484e1aa8f618f6f0228d76d0e67000b0fdd6090673b777e311913/asciitree-0.3.3.tar.gz"
     sha256 "4aa4b9b649f85e3fcb343363d97564aa1fb62e249677f2e18a96765145cc0f6e"
+  end
+
+  resource "av" do
+    url "https://files.pythonhosted.org/packages/0c/9d/486d31e76784cc0ad943f420c5e05867263b32b37e2f4b0f7f22fdc1ca3a/av-13.1.0.tar.gz"
+    sha256 "d3da736c55847d8596eb8c26c60e036f193001db3bc5c10da8665622d906c17e"
   end
 
   resource "bcrypt" do
@@ -51,14 +66,29 @@ class KeeperCommander < Formula
     sha256 "08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44"
   end
 
+  resource "dnspython" do
+    url "https://files.pythonhosted.org/packages/b5/4a/263763cb2ba3816dd94b08ad3a33d5fdae34ecb856678773cc40a3605829/dnspython-2.7.0.tar.gz"
+    sha256 "ce9c432eda0dc91cf618a5cedf1a4e142651196bbcd2c80e89ed5a907e5cfaf1"
+  end
+
   resource "fido2" do
     url "https://files.pythonhosted.org/packages/eb/cc/4529123364d41f342145f2fd775307eaed817cd22810895dea10e15a4d06/fido2-1.2.0.tar.gz"
     sha256 "e39f95920122d64283fda5e5581d95a206e704fa42846bfa4662f86aa0d3333b"
   end
 
+  resource "google-crc32c" do
+    url "https://files.pythonhosted.org/packages/fd/c6/bd09366753b49353895ed73bad74574d9086b26b53bb5b9213962009719a/google_crc32c-1.7.0.tar.gz"
+    sha256 "c8c15a04b290c7556f277acc55ad98503a8bc0893ea6860fd5b5d210f3f558ce"
+  end
+
   resource "idna" do
     url "https://files.pythonhosted.org/packages/f1/70/7703c29685631f5a7590aa73f1f1d3fa9a380e654b86af429e0934a32f7d/idna-3.10.tar.gz"
     sha256 "12f65c9b470abda6dc35cf8e63cc574b1c52b11df2c86030af0ac09b01b13ea9"
+  end
+
+  resource "ifaddr" do
+    url "https://files.pythonhosted.org/packages/e8/ac/fb4c578f4a3256561548cd825646680edcadb9440f3f68add95ade1eb791/ifaddr-0.2.0.tar.gz"
+    sha256 "cc0cbfcaabf765d44595825fb96a99bb12c79716b73b44330ea38ee2b0c4aed4"
   end
 
   resource "importlib-metadata" do
@@ -82,8 +112,8 @@ class KeeperCommander < Formula
   end
 
   resource "pycryptodomex" do
-    url "https://files.pythonhosted.org/packages/11/dc/e66551683ade663b5f07d7b3bc46434bf703491dbd22ee12d1f979ca828f/pycryptodomex-3.21.0.tar.gz"
-    sha256 "222d0bd05381dd25c32dd6065c071ebf084212ab79bab4599ba9e6a3e0009e6c"
+    url "https://files.pythonhosted.org/packages/ba/d5/861a7daada160fcf6b0393fb741eeb0d0910b039ad7f0cd56c39afdd4a20/pycryptodomex-3.22.0.tar.gz"
+    sha256 "a1da61bacc22f93a91cbe690e3eb2022a03ab4123690ab16c46abb693a9df63d"
   end
 
   resource "pydantic" do
@@ -94,6 +124,21 @@ class KeeperCommander < Formula
   resource "pydantic-core" do
     url "https://files.pythonhosted.org/packages/fc/01/f3e5ac5e7c25833db5eb555f7b7ab24cd6f8c322d3a3ad2d67a952dc0abc/pydantic_core-2.27.2.tar.gz"
     sha256 "eb026e5a4c1fee05726072337ff51d1efb6f59090b7da90d30ea58625b1ffb39"
+  end
+
+  resource "pyee" do
+    url "https://files.pythonhosted.org/packages/95/03/1fd98d5841cd7964a27d729ccf2199602fe05eb7a405c1462eb7277945ed/pyee-13.0.0.tar.gz"
+    sha256 "b391e3c5a434d1f5118a25615001dbc8f669cf410ab67d04c4d4e07c55481c37"
+  end
+
+  resource "pylibsrtp" do
+    url "https://files.pythonhosted.org/packages/2e/49/1c5101ecfeda540699e0754dddfc91c401fbf736ebe99d66e59fe3dad2ba/pylibsrtp-0.11.0.tar.gz"
+    sha256 "5a8d19b1448baebde5ae3cedfa51f10e8ada3d9d99f43046ced0ecf1c105b8ec"
+  end
+
+  resource "pyopenssl" do
+    url "https://files.pythonhosted.org/packages/9f/26/e25b4a374b4639e0c235527bbe31c0524f26eda701d79456a7e1877f4cc5/pyopenssl-25.0.0.tar.gz"
+    sha256 "cd2cef799efa3936bb08e8ccb9433a575722b9dd986023f1cabc4ae64e9dac16"
   end
 
   resource "pyperclip" do
@@ -117,8 +162,8 @@ class KeeperCommander < Formula
   end
 
   resource "setuptools" do
-    url "https://files.pythonhosted.org/packages/32/d2/7b171caf085ba0d40d8391f54e1c75a1cda9255f542becf84575cfd8a732/setuptools-76.0.0.tar.gz"
-    sha256 "43b4ee60e10b0d0ee98ad11918e114c70701bc6051662a9a675a0496c1a158f4"
+    url "https://files.pythonhosted.org/packages/81/ed/7101d53811fd359333583330ff976e5177c5e871ca8b909d1d6c30553aa3/setuptools-77.0.3.tar.gz"
+    sha256 "583b361c8da8de57403743e756609670de6fb2345920e36dc5c2d914c319c945"
   end
 
   resource "tabulate" do
