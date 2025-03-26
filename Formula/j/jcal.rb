@@ -1,14 +1,10 @@
 class Jcal < Formula
   desc "UNIX-cal-like tool to display Jalali calendar"
-  homepage "https://savannah.nongnu.org/projects/jcal/"
-  url "https://download.savannah.gnu.org/releases/jcal/jcal-0.4.1.tar.gz"
-  sha256 "e8983ecad029b1007edc98458ad13cd9aa263d4d1cf44a97e0a69ff778900caa"
+  homepage "https://github.com/persiancal/jcal"
+  url "https://github.com/persiancal/jcal/archive/refs/tags/v0.5.1.tar.gz"
+  sha256 "6cc477c668962de9250b7aebfdf0eee979ab94ec4f393dc04782024ef68fff45"
   license "GPL-3.0-or-later"
-
-  livecheck do
-    url "https://download.savannah.gnu.org/releases/jcal/"
-    regex(/href=.*?jcal[._-]v?(\d+(?:\.\d+)+)\.t/i)
-  end
+  head "https://github.com/persiancal/jcal.git", branch: "master"
 
   bottle do
     sha256 cellar: :any,                 arm64_sequoia:  "31377fb6a087e5e70e9ae8a1bc7ac390db8efa860f7a956a759b27e710fe21e2"
@@ -32,15 +28,18 @@ class Jcal < Formula
   depends_on "autoconf" => :build
   depends_on "automake" => :build
   depends_on "libtool" => :build
+  depends_on "readline"
 
   def install
     shell_name = OS.mac? ? "/bin/sh" : "/bin/bash"
-    system shell_name, "autogen.sh"
-    system "./configure", "--prefix=#{prefix}",
-                          "--disable-debug",
-                          "--disable-dependency-tracking"
-    system "make"
-    system "make", "install"
+    cd "sources" do
+      system shell_name, "autogen.sh"
+      system "./configure", "--prefix=#{prefix}",
+                            "--disable-debug",
+                            "--disable-dependency-tracking"
+      system "make"
+      system "make", "install"
+    end
   end
 
   test do
